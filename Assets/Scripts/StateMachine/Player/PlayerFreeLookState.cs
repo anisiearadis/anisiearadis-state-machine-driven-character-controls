@@ -6,7 +6,7 @@ public class PlayerFreeLookState : PlayerBaseState
 
     public PlayerFreeLookState(PlayerStateMachine stateMachine) : base(stateMachine)
     {
-        _curXRot = stateMachine.CameraAnchor.transform.eulerAngles.x;
+        _curXRot = Utils.EulerAngleNegative(stateMachine.CameraAnchor.transform.eulerAngles.x);
     }
 
     public override void Enter()
@@ -60,6 +60,6 @@ public class PlayerFreeLookState : PlayerBaseState
         clampedAngle.x = _curXRot;
 
         // and assign it back to the camera 
-        stateMachine.CameraAnchor.transform.eulerAngles = clampedAngle;
+        stateMachine.CameraAnchor.transform.rotation = Quaternion.Euler(clampedAngle);
     }
 }
